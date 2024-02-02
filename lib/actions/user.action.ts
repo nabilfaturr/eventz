@@ -31,3 +31,15 @@ export const updateUser = async (user: UpdateUserParam, clerkId: string) => {
     handleError(error);
   }
 };
+
+export const deleteUser = async (id: string) => {
+  try {
+    const deletedUser = await User.findOneAndDelete({ id });
+    if (!deletedUser) {
+      throw new Error("Delete User failed");
+    }
+    return JSON.parse(JSON.stringify(deletedUser));
+  } catch (error) {
+    handleError(error);
+  }
+};
