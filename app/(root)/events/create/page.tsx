@@ -1,5 +1,6 @@
 import React from "react";
 import { auth } from "@clerk/nextjs";
+import EventForm from "@/components/shared/EventForm";
 
 const page = () => {
   const { sessionClaims } = auth();
@@ -14,6 +15,7 @@ const page = () => {
         </h3>
       </section>
       <div className="wrapper my-8">
+        <EventForm type="Create" userId={userId} />
       </div>
     </>
   );
