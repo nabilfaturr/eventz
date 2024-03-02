@@ -17,10 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-const formSchema = z.object({
-  username: z.string().min(2).max(50),
-});
-import React from "react";
+import { eventFormSchema } from "@/lib/validator";
 
 type EventFormProps = {
   type: "Update" | "Create";
@@ -29,15 +26,15 @@ type EventFormProps = {
 
 const EventForm = ({ type, userId }: EventFormProps) => {
   // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof eventFormSchema>>({
+    resolver: zodResolver(eventFormSchema),
     defaultValues: {
       username: "",
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof eventFormSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
