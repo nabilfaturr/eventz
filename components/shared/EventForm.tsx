@@ -21,6 +21,8 @@ import { eventFormSchema } from "@/lib/validator";
 import { eventDefaultValues } from "@/constants";
 import Dropdown from "./Dropdown";
 
+import { Textarea } from "@/components/ui/textarea";
+
 type EventFormProps = {
   type: "Update" | "Create";
   userId?: string;
@@ -67,6 +69,22 @@ const EventForm = ({ type, userId }: EventFormProps) => {
               <FormItem className="w-full">
                 <FormControl>
                   <Dropdown handleChange={field.onChange} value={field.value} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl className="h-72">
+                  <Textarea
+                    placeholder="Description"
+                    {...field}
+                    className="textarea rounded-2xl"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
